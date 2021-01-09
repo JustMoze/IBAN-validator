@@ -5,6 +5,10 @@ const { validateIbanNumber, dependsToSEB, cardDependency } = require('../utils/I
 
 const router = express.Router();
 
+router.get('/', (req,res) => {
+    res.send('Welcome to IBAN numbers validation API');
+});
+
 router.get('/:IBAN', async (req,res) => {
     let { IBAN } = req.params;
     let {valid, message} = validateIbanNumber(IBAN);
@@ -29,7 +33,7 @@ router.get('/:IBAN', async (req,res) => {
     } else res.status(400).json({message});
 });
 
-router.post('/iban/file/', async (req, res) => {
+router.post('iban/file/', async (req, res) => {
     try {
         let {'' : {data, name}} = req.files;
         let result = {valid: [], bank: []};
@@ -61,7 +65,7 @@ router.post('/iban/file/', async (req, res) => {
     }
 });
 
-router.post('/iban/list/', async (req, res) => {
+router.post('iban/list/', async (req, res) => {
     let result = {valid: [], bank: []};
 
     for (let i = 0; i < req.body.length; i++) {
