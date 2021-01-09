@@ -33,7 +33,7 @@ router.get('/:IBAN', async (req,res) => {
     } else res.status(400).json({message});
 });
 
-router.post('iban/file/', async (req, res) => {
+router.post('/iban/file/', async (req, res) => {
     try {
         let {'' : {data, name}} = req.files;
         let result = {valid: [], bank: []};
@@ -65,7 +65,7 @@ router.post('iban/file/', async (req, res) => {
     }
 });
 
-router.post('iban/list/', async (req, res) => {
+router.post('/iban/list/', async (req, res) => {
     let result = {valid: [], bank: []};
 
     for (let i = 0; i < req.body.length; i++) {
